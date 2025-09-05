@@ -6,20 +6,10 @@ const apperClient = new ApperClient({
 });
 
 // Content generation templates and logic
-const generateContentByType = (contentType, industry, audience, tone, additionalNotes) => {
-  // Static templates for content generation
-  const templates = {
-    "blog-post": [
-      {
-        "template": "# Transform Your [INDUSTRY] Experience: A Complete Guide\n\nIn today's fast-paced world, [AUDIENCE] are constantly looking for ways to improve their experience with [INDUSTRY]. Whether you're just starting out or looking to take things to the next level, understanding what makes the difference can be game-changing.\n\n## Why [INDUSTRY] Matters More Than Ever\n\nThe landscape of [INDUSTRY] has evolved dramatically. What worked yesterday might not work today, and [AUDIENCE] need solutions that adapt to their changing needs. That's where [TONE_ADJUST] comes into play.\n\n## The Challenge Most People Face\n\nMany [AUDIENCE] struggle with [TARGET_PROBLEM]. This common challenge affects not just their immediate goals, but their long-term success and satisfaction.\n\n## Your Path to Success\n\nThe key to overcoming these challenges lies in [SOLUTION]. By focusing on proven strategies and personalized approaches, you can achieve the results you've been looking for.\n\n## Taking Action\n\nSuccess in [INDUSTRY] doesn't happen overnight, but with the right guidance and commitment, [AUDIENCE] can achieve remarkable results. The most successful people in [INDUSTRY] all share one common trait: they took action when the opportunity presented itself.\n\n[CALL_TO_ACTION]"
-      }
-    ],
-    "social-media": [
-      {
-        "template": "🚀 Attention [AUDIENCE]! \n\nTired of [TARGET_PROBLEM]? We get it. That's exactly why we specialize in [SOLUTION] for the [INDUSTRY] industry.\n\n✨ What makes us different?\n• Personalized approach for every client\n• Proven results that speak for themselves  \n• [TONE_ADJUST] every step of the way\n\nReady to transform your [INDUSTRY] experience? \n\n[CALL_TO_ACTION]\n\n#[INDUSTRY] #Success #Results #Transformation"
-      }
-    ]
-  }
+const generateContentByType = async (contentType, industry, audience, tone, additionalNotes) => {
+  // Import templates from JSON file to ensure variety and prevent duplicates
+  const templateModule = await import('/src/services/mockData/contentTemplates.json');
+  const templates = templateModule.default;
   
   const contentTypeTemplates = templates[contentType] || templates["blog-post"]
   const template = contentTypeTemplates[Math.floor(Math.random() * contentTypeTemplates.length)]
