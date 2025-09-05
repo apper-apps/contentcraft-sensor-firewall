@@ -4,7 +4,7 @@ import ApperIcon from "@/components/ApperIcon";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import React, { useState } from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 const ContentPreview = ({ content, wordCount, charCount, onEdit }) => {
   const [copied, setCopied] = useState(false)
