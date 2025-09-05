@@ -1,8 +1,30 @@
 import { motion } from "framer-motion";
+import { useContext } from "react";
 import ThemeToggle from "@/components/atoms/ThemeToggle";
+import Button from "@/components/atoms/Button";
 import React from "react";
 import ApperIcon from "@/components/ApperIcon";
+import { AuthContext } from "@/App";
 
+const LogoutButton = () => {
+  const { logout } = useContext(AuthContext);
+
+  const handleLogout = async () => {
+    await logout();
+  };
+
+  return (
+    <Button
+      onClick={handleLogout}
+      variant="outline"
+      size="sm"
+      className="flex items-center gap-2 text-sm"
+    >
+      <ApperIcon name="LogOut" className="h-4 w-4" />
+      <span className="hidden sm:inline">Logout</span>
+    </Button>
+  );
+};
 const Header = () => {
   return (
 <header
@@ -34,9 +56,9 @@ const Header = () => {
                                       </p>
                 </div>
             </motion.div>
-            <motion.div className="flex items-center gap-4">
+<motion.div className="flex items-center gap-4">
                 <ThemeToggle />
-                <div
+                <motion.div
                     initial={{
                         opacity: 0,
                         x: 20
@@ -49,16 +71,17 @@ const Header = () => {
                         duration: 0.5,
                         delay: 0.1
                     }}>
-                    <div
-                        className="hidden sm:flex items-center gap-2 text-sm dark:text-slate-400 light:text-purple-600">
-                        <ApperIcon name="Zap" className="h-4 w-4 text-primary-400" />AI Powered
-                                    </div>
+                    <div className="hidden sm:flex items-center gap-2 text-sm dark:text-slate-400 light:text-purple-600">
+                        <ApperIcon name="Zap" className="h-4 w-4 text-primary-400" />
+                        AI Powered
+                    </div>
                     <div className="hidden sm:flex items-center gap-2 text-sm text-slate-400">
-                        <ApperIcon
-                            name="Clock"
-                            className="h-4 w-4 dark:text-secondary-400 light:text-purple-500" />Instant Results
-                                    </div>
-                </div></motion.div>
+                        <ApperIcon name="Clock" className="h-4 w-4 dark:text-secondary-400 light:text-purple-500" />
+                        Instant Results
+                    </div>
+                </motion.div>
+                <LogoutButton />
+            </motion.div>
         </div>
     </div>
 </header>

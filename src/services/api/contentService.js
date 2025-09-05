@@ -1,11 +1,28 @@
-import contentTemplates from "@/services/mockData/contentTemplates.json"
-
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
+// Initialize ApperClient with Project ID and Public Key
+const { ApperClient } = window.ApperSDK;
+const apperClient = new ApperClient({
+  apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+  apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+});
 
 // Content generation templates and logic
 const generateContentByType = (contentType, industry, audience, tone, additionalNotes) => {
-  const templates = contentTemplates[contentType] || contentTemplates["blog-post"]
-  const template = templates[Math.floor(Math.random() * templates.length)]
+  // Static templates for content generation
+  const templates = {
+    "blog-post": [
+      {
+        "template": "# Transform Your [INDUSTRY] Experience: A Complete Guide\n\nIn today's fast-paced world, [AUDIENCE] are constantly looking for ways to improve their experience with [INDUSTRY]. Whether you're just starting out or looking to take things to the next level, understanding what makes the difference can be game-changing.\n\n## Why [INDUSTRY] Matters More Than Ever\n\nThe landscape of [INDUSTRY] has evolved dramatically. What worked yesterday might not work today, and [AUDIENCE] need solutions that adapt to their changing needs. That's where [TONE_ADJUST] comes into play.\n\n## The Challenge Most People Face\n\nMany [AUDIENCE] struggle with [TARGET_PROBLEM]. This common challenge affects not just their immediate goals, but their long-term success and satisfaction.\n\n## Your Path to Success\n\nThe key to overcoming these challenges lies in [SOLUTION]. By focusing on proven strategies and personalized approaches, you can achieve the results you've been looking for.\n\n## Taking Action\n\nSuccess in [INDUSTRY] doesn't happen overnight, but with the right guidance and commitment, [AUDIENCE] can achieve remarkable results. The most successful people in [INDUSTRY] all share one common trait: they took action when the opportunity presented itself.\n\n[CALL_TO_ACTION]"
+      }
+    ],
+    "social-media": [
+      {
+        "template": "🚀 Attention [AUDIENCE]! \n\nTired of [TARGET_PROBLEM]? We get it. That's exactly why we specialize in [SOLUTION] for the [INDUSTRY] industry.\n\n✨ What makes us different?\n• Personalized approach for every client\n• Proven results that speak for themselves  \n• [TONE_ADJUST] every step of the way\n\nReady to transform your [INDUSTRY] experience? \n\n[CALL_TO_ACTION]\n\n#[INDUSTRY] #Success #Results #Transformation"
+      }
+    ]
+  }
+  
+  const contentTypeTemplates = templates[contentType] || templates["blog-post"]
+  const template = contentTypeTemplates[Math.floor(Math.random() * contentTypeTemplates.length)]
   
   // Replace placeholders with actual data
   let content = template.template
@@ -167,42 +184,147 @@ const getCallToAction = (contentType, tone) => {
   return contentCtas[tone] || contentCtas.default
 }
 
-export const generateContent = async (formData) => {
-  await delay(Math.floor(Math.random() * 1500) + 1000) // 1-2.5 second delay
-  
+// Content Templates Service - using content_template_c table
+export const getContentTemplates = async () => {
   try {
+    const params = {
+      fields: [
+        { field: { Name: "Name" } },
+        { field: { Name: "Tags" } },
+        { field: { Name: "template_c" } },
+        { field: { Name: "content_type_c" } }
+      ],
+      pagingInfo: { limit: 100, offset: 0 }
+    };
+    
+    const response = await apperClient.fetchRecords('content_template_c', params);
+    
+    if (!response.success) {
+      console.error(response.message);
+      return [];
+    }
+    
+    return response.data || [];
+  } catch (error) {
+    console.error("Error fetching content templates:", error?.response?.data?.message || error);
+    return [];
+  }
+};
+
+// Generated Content Service - using generated_content_c table
+export const createGeneratedContent = async (contentData) => {
+  try {
+    const params = {
+      records: [{
+        Name: contentData.name || `Generated Content - ${new Date().toLocaleDateString()}`,
+        industry_c: contentData.industry,
+        target_audience_c: contentData.targetAudience,
+        tone_c: contentData.tone,
+        content_type_c: contentData.contentType,
+        additional_notes_c: contentData.additionalNotes || '',
+        content_c: contentData.content,
+        word_count_c: contentData.wordCount || 0
+      }]
+    };
+    
+    const response = await apperClient.createRecord('generated_content_c', params);
+    
+    if (!response.success) {
+      console.error(response.message);
+      return null;
+    }
+    
+    if (response.results && response.results.length > 0) {
+      const successfulRecord = response.results.find(result => result.success);
+      return successfulRecord ? successfulRecord.data : null;
+    }
+    
+    return null;
+  } catch (error) {
+    console.error("Error creating generated content:", error?.response?.data?.message || error);
+    return null;
+  }
+};
+
+export const getGeneratedContent = async () => {
+  try {
+    const params = {
+      fields: [
+        { field: { Name: "Name" } },
+        { field: { Name: "Tags" } },
+        { field: { Name: "industry_c" } },
+        { field: { Name: "target_audience_c" } },
+        { field: { Name: "tone_c" } },
+        { field: { Name: "content_type_c" } },
+        { field: { Name: "additional_notes_c" } },
+        { field: { Name: "content_c" } },
+        { field: { Name: "word_count_c" } },
+        { field: { Name: "CreatedOn" } }
+      ],
+      orderBy: [{ fieldName: "CreatedOn", sorttype: "DESC" }],
+      pagingInfo: { limit: 50, offset: 0 }
+    };
+    
+    const response = await apperClient.fetchRecords('generated_content_c', params);
+    
+    if (!response.success) {
+      console.error(response.message);
+      return [];
+    }
+    
+    return response.data || [];
+  } catch (error) {
+    console.error("Error fetching generated content:", error?.response?.data?.message || error);
+    return [];
+  }
+};
+
+// Main content generation function
+export const generateContent = async (formData) => {
+  try {
+    // Generate the content using templates
     const content = generateContentByType(
       formData.contentType,
       formData.industry,
       formData.targetAudience,
       formData.tone,
       formData.additionalNotes
-    )
+    );
     
     if (!content || content.trim().length === 0) {
-      throw new Error("Failed to generate content")
+      throw new Error("Failed to generate content");
     }
     
-    return content
+    // Calculate word count
+    const wordCount = content.trim().split(/\s+/).length;
+    
+    // Save to database
+    const contentData = {
+      name: `${formData.contentType} - ${new Date().toLocaleDateString()}`,
+      industry: formData.industry,
+      targetAudience: formData.targetAudience,
+      tone: formData.tone,
+      contentType: formData.contentType,
+      additionalNotes: formData.additionalNotes,
+      content: content,
+      wordCount: wordCount
+    };
+    
+    // Save the generated content to database
+    await createGeneratedContent(contentData);
+    
+    return content;
   } catch (error) {
-    throw new Error("Unable to generate content at this time. Please try again.")
+    console.error("Error in generateContent:", error);
+    throw new Error("Unable to generate content at this time. Please try again.");
   }
-}
+};
 
+// Legacy functions for backward compatibility
 export const getContentHistory = async () => {
-  await delay(300)
-  
-  // Return empty array for now - could be extended to store history
-  return []
-}
+  return await getGeneratedContent();
+};
 
 export const saveContentToHistory = async (contentData) => {
-  await delay(200)
-  
-  // Simulate saving to history
-  return {
-    Id: Date.now(),
-    ...contentData,
-    createdAt: new Date()
-  }
-}
+  return await createGeneratedContent(contentData);
+};

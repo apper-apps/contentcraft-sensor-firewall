@@ -67,12 +67,28 @@ const ContentGeneratorForm = ({ onGenerate, isGenerating }) => {
     { value: "product-description", label: "Product Description" }
   ]
 
-  const handleSubmit = (e) => {
+const handleSubmit = (e) => {
     e.preventDefault()
     if (!formData.industry || !formData.targetAudience || !formData.tone || !formData.contentType) {
       return
     }
-    onGenerate(formData)
+    
+    // Map form field names to database field names
+    const mappedFormData = {
+      industry_c: formData.industry,
+      target_audience_c: formData.targetAudience,
+      tone_c: formData.tone,
+      content_type_c: formData.contentType,
+      additional_notes_c: formData.additionalNotes,
+      // Keep original names for backward compatibility
+      industry: formData.industry,
+      targetAudience: formData.targetAudience,
+      tone: formData.tone,
+      contentType: formData.contentType,
+      additionalNotes: formData.additionalNotes
+    }
+    
+    onGenerate(mappedFormData)
   }
 
   const handleInputChange = (field, value) => {

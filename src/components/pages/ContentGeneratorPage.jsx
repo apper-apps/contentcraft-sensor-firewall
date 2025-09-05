@@ -12,70 +12,68 @@ import Error from "@/components/ui/Error";
 import Loading from "@/components/ui/Loading";
 
 const ContentGeneratorPage = () => {
-  const [content, setContent] = useState("")
-  const [generatedContent, setGeneratedContent] = useState("")
-  const [wordCount, setWordCount] = useState(0)
-  const [isGenerating, setIsGenerating] = useState(false)
-  const [error, setError] = useState(null)
-  const [showSignupModal, setShowSignupModal] = useState(false)
-  const [usageCount, setUsageCount] = useState(0)
+  const [content, setContent] = useState("");
+  const [generatedContent, setGeneratedContent] = useState("");
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [error, setError] = useState(null);
+  const [showSignupModal, setShowSignupModal] = useState(false);
+  const [usageCount, setUsageCount] = useState(0);
   const [stats, setStats] = useState({
     totalGenerated: 156,
     todayGenerated: 23,
     avgResponseTime: "2.4s"
-  })
+  });
 const handleGenerate = async (formData) => {
-    setIsGenerating(true)
-    setError(null)
+    setIsGenerating(true);
+    setError(null);
     
     try {
       // Check usage limit before generating
       if (usageCount >= 3) {
-        setShowSignupModal(true)
-        setIsGenerating(false)
-        return
+        setShowSignupModal(true);
+        setIsGenerating(false);
+        return;
       }
       
-      const generatedContent = await generateContent(formData)
+      const newGeneratedContent = await generateContent(formData);
       
-      setContent(generatedContent)
-      setGeneratedContent(generatedContent)
-      setWordCount(generatedContent.split(' ').length)
-      setUsageCount(prev => prev + 1)
+      setContent(newGeneratedContent);
+      setGeneratedContent(newGeneratedContent);
+      
+      setUsageCount(prev => prev + 1);
       setStats(prev => ({
         ...prev,
         totalGenerated: prev.totalGenerated + 1,
         todayGenerated: prev.todayGenerated + 1
-      }))
+      }));
       
-      toast.success("Content generated successfully! 🎉")
+      toast.success("Content generated successfully! 🎉");
     } catch (err) {
-      console.error('Content generation error:', err)
-      setError(err.message || 'Failed to generate content')
-      toast.error("Failed to generate content. Please try again.")
+      console.error('Content generation error:', err);
+      setError(err.message || 'Failed to generate content');
+      toast.error("Failed to generate content. Please try again.");
     } finally {
-      setIsGenerating(false)
+      setIsGenerating(false);
     }
-  }
+  };
 
-  const handleRetry = () => {
-    setError(null)
-    setContent("")
-  }
+const handleRetry = () => {
+    setError(null);
+    setContent("");
+  };
 
   const handleCloseSignupModal = () => {
-    setShowSignupModal(false)
-  }
+    setShowSignupModal(false);
+  };
 
   // Calculate content stats
-  const wordCount = content ? content.trim().split(/\s+/).length : 0
-  const charCount = content ? content.length : 0
-  const estimatedReadTime = Math.max(1, Math.ceil(wordCount / 200))
+  const wordCount = content ? content.trim().split(/\s+/).length : 0;
+  const charCount = content ? content.length : 0;
+  const estimatedReadTime = Math.max(1, Math.ceil(wordCount / 200));
 
   const handleEditContent = (editedContent) => {
-    setContent(editedContent)
-  }
-
+    setContent(editedContent);
+  };
   return (
     <div className="min-h-screen transition-colors duration-300">
       <Header />
@@ -137,12 +135,12 @@ const handleGenerate = async (formData) => {
           >
             {isGenerating ? (
               <Loading />
-            ) : error ? (
+) : error ? (
               <Error 
                 message={error}
                 onRetry={handleRetry}
               />
-) : (
+            ) : (
               <ContentPreview
                 content={content}
                 wordCount={wordCount}
@@ -202,7 +200,8 @@ const handleGenerate = async (formData) => {
         isOpen={showSignupModal} 
         onClose={handleCloseSignupModal} 
       />
-    </div>
-  )
-}
-export default ContentGeneratorPage
+</div>
+  );
+};
+
+export default ContentGeneratorPage;
