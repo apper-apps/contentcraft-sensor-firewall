@@ -151,7 +151,24 @@ const handleRetry = () => {
           </motion.div>
         </div>
 
-{/* Feature Highlights */}
+{/* Why Choose Our Content Generator */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-12 mb-8"
+        >
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-display font-bold text-gradient">
+              Why Thousands of Businesses Choose ContentCraft AI
+            </h2>
+            <p className="text-xl dark:text-slate-400 light:text-purple-600 max-w-4xl mx-auto">
+              Join successful businesses who have transformed their content strategy and saved countless hours while achieving better results
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Feature Highlights */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -192,6 +209,121 @@ const handleRetry = () => {
               </p>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Detailed Benefits Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-20"
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-display font-bold text-gradient mb-4">
+              The Smart Choice for Your Business
+            </h2>
+            <p className="text-xl dark:text-slate-400 light:text-purple-600 max-w-3xl mx-auto">
+              Discover why our AI-powered content generator is the preferred solution for businesses serious about growth
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: "DollarSign",
+                title: "Save 85% on Content Costs",
+                description: "Replace expensive copywriters and agencies. Generate professional content for a fraction of the cost while maintaining quality that converts.",
+                highlight: "Average savings: $2,400/month"
+              },
+              {
+                icon: "Clock",
+                title: "10x Faster Than Manual Writing",
+                description: "What takes hours to write manually, our AI generates in seconds. Spend time on strategy and growth, not content creation.",
+                highlight: "From hours to seconds"
+              },
+              {
+                icon: "TrendingUp",
+                title: "Proven to Increase Conversions",
+                description: "Our AI is trained on high-converting content patterns. Generate copy that's optimized for engagement and sales from day one.",
+                highlight: "Up to 40% higher engagement"
+              },
+              {
+                icon: "Users",
+                title: "Perfect for Any Business Size",
+                description: "Whether you're a solopreneur or enterprise, scale your content production without hiring additional staff or resources.",
+                highlight: "Scales with your growth"
+              },
+              {
+                icon: "Shield",
+                title: "Industry-Specific Expertise",
+                description: "Unlike generic AI tools, our system understands your industry's unique language, challenges, and customer needs.",
+                highlight: "10+ industries supported"
+              },
+              {
+                icon: "Rocket",
+                title: "Stay Ahead of Competition",
+                description: "While competitors struggle with content creation, you'll have professional marketing materials ready in minutes.",
+                highlight: "Competitive advantage guaranteed"
+              }
+            ].map((benefit, index) => (
+              <motion.div
+                key={benefit.title}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-xl p-6 border border-slate-700/30 hover:border-primary-500/30 transition-colors duration-300"
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-primary-600 to-secondary-600 flex items-center justify-center">
+                      <ApperIcon name={benefit.icon} className="h-6 w-6 text-white" />
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold dark:text-white light:text-purple-900 mb-2">
+                      {benefit.title}
+                    </h3>
+                    <p className="dark:text-slate-400 light:text-purple-600 text-sm leading-relaxed mb-3">
+                      {benefit.description}
+                    </p>
+                    <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary-500/10 border border-primary-500/20">
+                      <span className="text-xs font-medium text-primary-400">
+                        {benefit.highlight}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="text-center mt-12 p-8 bg-gradient-to-r from-primary-600/10 to-secondary-600/10 rounded-2xl border border-primary-500/20"
+          >
+            <h3 className="text-2xl font-bold text-gradient mb-4">
+              Ready to Transform Your Content Strategy?
+            </h3>
+            <p className="dark:text-slate-300 light:text-purple-700 text-lg mb-6 max-w-2xl mx-auto">
+              Join thousands of businesses who've already discovered the power of AI-generated content. 
+              Start creating professional marketing materials that convert in seconds, not hours.
+            </p>
+            <div className="flex flex-wrap justify-center gap-6 text-sm dark:text-slate-400 light:text-purple-600">
+              <div className="flex items-center gap-2">
+                <ApperIcon name="Check" className="h-4 w-4 text-green-400" />
+                <span>No contracts or commitments</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <ApperIcon name="Check" className="h-4 w-4 text-green-400" />
+                <span>Start generating immediately</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <ApperIcon name="Check" className="h-4 w-4 text-green-400" />
+                <span>Professional results guaranteed</span>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       </main>
       
