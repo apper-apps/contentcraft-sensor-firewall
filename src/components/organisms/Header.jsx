@@ -50,7 +50,7 @@ const Header = () => {
                 </div>
                 <div>
                     <h1 className="text-xl font-display font-bold text-gradient">
-                        <span className="dark:text-white light:text-purple-900">ContentCraft AI</span>
+ContentCraft AI
                     </h1>
                     <p className="text-xs dark:text-slate-400 light:text-purple-600">Smart Marketing Content Generator
                                       </p>

@@ -62,9 +62,9 @@ const ContentPreview = ({ content, wordCount, charCount, onEdit }) => {
           </div>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+<div className="bg-slate-900/80 rounded-lg p-4 border border-slate-700/50">
             <div className="prose prose-invert max-w-none">
-              <div className="whitespace-pre-wrap text-slate-200 leading-relaxed">
+              <div className="whitespace-pre-wrap text-white leading-relaxed">
                 {content}
               </div>
             </div>

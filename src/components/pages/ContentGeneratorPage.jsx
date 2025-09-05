@@ -87,7 +87,7 @@ const handleRetry = () => {
           className="mb-8"
         >
           <div className="text-center space-y-4">
-<h1 className="text-4xl sm:text-5xl font-display font-bold text-gradient dark:text-gradient light:bg-gradient-to-r light:from-purple-600 light:to-purple-800 light:bg-clip-text light:text-transparent">
+<h1 className="text-2xl sm:text-3xl font-display font-bold text-gradient dark:text-gradient light:bg-gradient-to-r light:from-purple-600 light:to-purple-800 light:bg-clip-text light:text-transparent">
               Create Engaging Content in Seconds
             </h1>
 <p className="text-xl dark:text-slate-400 light:text-purple-700 max-w-3xl mx-auto">
