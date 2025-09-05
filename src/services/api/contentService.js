@@ -273,13 +273,18 @@ export const getGeneratedContent = async () => {
 export const generateContent = async (formData) => {
   try {
     // Generate the content using templates
-    const content = generateContentByType(
+const content = generateContentByType(
       formData.contentType,
       formData.industry,
       formData.targetAudience,
       formData.tone,
       formData.additionalNotes
     );
+    
+    // Type-safe content validation to prevent trim() errors on non-strings
+    if (!content || typeof content !== 'string' || content.trim().length === 0) {
+      throw new Error('Failed to generate valid content. Please try again with different parameters.');
+    }
     
     if (!content || content.trim().length === 0) {
       throw new Error("Failed to generate content");
