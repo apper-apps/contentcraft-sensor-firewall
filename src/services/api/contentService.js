@@ -274,17 +274,16 @@ export const generateContent = async (formData) => {
   try {
     // Generate the content using templates
 // Load templates and generate content
-    const templates = await import('@/services/mockData/contentTemplates.json');
+const templates = await import('@/services/mockData/contentTemplates.json');
     const contentTemplates = templates.default;
     
     // Generate content using templates
-    const content = generateContentByType(
+    const content = await generateContentByType(
       formData.contentType || formData.content_type_c,
       formData.industry || formData.industry_c,
       formData.targetAudience || formData.target_audience_c,
       formData.tone || formData.tone_c,
-      formData.additionalNotes || formData.additional_notes_c,
-      contentTemplates
+      formData.additionalNotes || formData.additional_notes_c
     );
     
     // Type-safe content validation to prevent trim() errors on non-strings
