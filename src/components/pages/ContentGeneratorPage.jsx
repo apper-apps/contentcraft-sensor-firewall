@@ -1,66 +1,98 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import SignupModal from "@/components/molecules/SignupModal";
+import { motion } from "framer-motion";
+import { getContentTemplate } from "@/services/api/contentService";
+import ApperIcon from "@/components/ApperIcon";
 import Header from "@/components/organisms/Header";
 import ContentGeneratorForm from "@/components/organisms/ContentGeneratorForm";
-import ContentPreview from "@/components/molecules/ContentPreview";
 import StatsDisplay from "@/components/molecules/StatsDisplay";
-import Loading from "@/components/ui/Loading";
+import ContentPreview from "@/components/molecules/ContentPreview";
 import Error from "@/components/ui/Error";
-import ApperIcon from "@/components/ApperIcon";
-import { generateContent } from "@/services/api/contentService";
-import { toast } from "react-toastify";
-import { motion } from "framer-motion";
+import Loading from "@/components/ui/Loading";
 const ContentGeneratorPage = () => {
-  const [generatedContent, setGeneratedContent] = useState("")
+  const [content, setContent] = useState("")
   const [isGenerating, setIsGenerating] = useState(false)
   const [error, setError] = useState(null)
-  const [wordCount, setWordCount] = useState(0)
-  const [charCount, setCharCount] = useState(0)
-  const [estimatedReadTime, setEstimatedReadTime] = useState(0)
+  const [showSignupModal, setShowSignupModal] = useState(false)
+  const [usageCount, setUsageCount] = useState(0)
+  const [stats, setStats] = useState({
+    totalGenerated: 156,
+    todayGenerated: 23,
+avgResponseTime: "2.4s"
+  })
 
   const handleGenerate = async (formData) => {
     setIsGenerating(true)
     setError(null)
     
     try {
-      const content = await generateContent(formData)
-      setGeneratedContent(content)
+      // Check usage limit before generating
+      if (usageCount >= 3) {
+        setShowSignupModal(true)
+        setIsGenerating(false)
+        return
+      }
       
-      // Calculate stats
-      const words = content.trim().split(/\s+/).length
-      const chars = content.length
-      const readTime = Math.max(1, Math.ceil(words / 200)) // 200 words per minute average
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 2000))
       
-      setWordCount(words)
-      setCharCount(chars)
-      setEstimatedReadTime(readTime)
+      const template = getContentTemplate(formData.contentType, formData.industry)
       
-      toast.success("Content generated successfully!")
+      if (!template) {
+        throw new Error("Content template not found")
+      }
+      
+      // Generate personalized content based on form data
+      const generatedContent = template.content
+        .replace(/\{industry\}/g, formData.industry)
+        .replace(/\{audience\}/g, formData.targetAudience)
+        .replace(/\{tone\}/g, formData.tone)
+      
+      setContent(generatedContent)
+      setUsageCount(prev => prev + 1)
+      setStats(prev => ({
+        ...prev,
+        totalGenerated: prev.totalGenerated + 1,
+        todayGenerated: prev.todayGenerated + 1
+      }))
+      
+      toast.success("Content generated successfully! 🎉")
     } catch (err) {
-      setError(err.message)
-      toast.error("Failed to generate content")
+      console.error('Content generation error:', err)
+      setError(err.message || 'Failed to generate content')
+      toast.error("Failed to generate content. Please try again.")
     } finally {
       setIsGenerating(false)
     }
   }
 
-  const handleEditContent = (content) => {
-    // For now, just copy to clipboard for editing elsewhere
-    navigator.clipboard.writeText(content)
-    toast.info("Content copied to clipboard for editing!")
-  }
-
   const handleRetry = () => {
     setError(null)
-    setGeneratedContent("")
+    setContent("")
+  }
+
+  const handleCloseSignupModal = () => {
+    setShowSignupModal(false)
+  }
+
+  // Calculate content stats
+  const wordCount = content ? content.trim().split(/\s+/).length : 0
+  const charCount = content ? content.length : 0
+  const estimatedReadTime = Math.max(1, Math.ceil(wordCount / 200))
+
+  const handleEditContent = (editedContent) => {
+    setContent(editedContent)
   }
 
   return (
-<div className="min-h-screen transition-colors duration-300">
+    <div className="min-h-screen transition-colors duration-300">
       <Header />
       
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Hero Section */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="mb-8"
@@ -77,7 +109,7 @@ const ContentGeneratorPage = () => {
         </motion.div>
 
         {/* Stats Display */}
-        {generatedContent && (
+{content && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -119,9 +151,9 @@ const ContentGeneratorPage = () => {
                 message={error}
                 onRetry={handleRetry}
               />
-            ) : (
+) : (
               <ContentPreview
-                content={generatedContent}
+                content={content}
                 wordCount={wordCount}
                 charCount={charCount}
                 onEdit={handleEditContent}
@@ -130,12 +162,12 @@ const ContentGeneratorPage = () => {
           </motion.div>
         </div>
 
-        {/* Feature Highlights */}
+{/* Feature Highlights */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 grid md:grid-cols-3 gap-8"
+          className="grid md:grid-cols-3 gap-8 mt-16"
         >
           {[
             {
@@ -153,28 +185,33 @@ const ContentGeneratorPage = () => {
               title: "Multiple Formats",
               description: "From blog posts to ads, create any type of marketing content"
             }
-          ].map((feature, index) => (
+].map((feature, index) => (
             <motion.div
               key={feature.title}
               whileHover={{ y: -5 }}
               transition={{ duration: 0.2 }}
-className="text-center space-y-4"
+              className="text-center space-y-4"
             >
               <div className="w-12 h-12 mx-auto rounded-xl bg-gradient-to-r from-primary-600/20 to-secondary-600/20 flex items-center justify-center border border-primary-500/20">
                 <ApperIcon name={feature.icon} className="h-6 w-6 text-primary-400" />
               </div>
-<h3 className="text-xl font-semibold dark:text-white light:text-purple-900">
+              <h3 className="text-xl font-semibold dark:text-white light:text-purple-900">
                 {feature.title}
               </h3>
-<p className="dark:text-slate-400 light:text-purple-600">
+              <p className="dark:text-slate-400 light:text-purple-600">
                 {feature.description}
               </p>
             </motion.div>
           ))}
         </motion.div>
       </main>
+      
+      {/* Signup Modal */}
+      <SignupModal 
+        isOpen={showSignupModal} 
+        onClose={handleCloseSignupModal} 
+      />
     </div>
   )
 }
-
 export default ContentGeneratorPage
