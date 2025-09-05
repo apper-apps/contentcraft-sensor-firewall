@@ -6,7 +6,7 @@ const Card = forwardRef(({ className, ...props }, ref) => {
     <div
       ref={ref}
       className={cn(
-        "rounded-xl bg-gradient-to-br from-slate-600/50 to-slate-700/50 border border-slate-700/50 backdrop-blur-sm shadow-2xl",
+"rounded-xl bg-gradient-to-br from-gray-100/50 to-gray-200/50 border border-gray-300/50 backdrop-blur-sm shadow-2xl",
         className
       )}
       {...props}
