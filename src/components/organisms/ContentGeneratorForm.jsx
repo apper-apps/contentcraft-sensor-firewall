@@ -1,21 +1,21 @@
-import { useState } from "react"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/atoms/Card"
-import Button from "@/components/atoms/Button"
-import Input from "@/components/atoms/Input"
-import Select from "@/components/atoms/Select"
-import Textarea from "@/components/atoms/Textarea"
-import FormField from "@/components/molecules/FormField"
-import ApperIcon from "@/components/ApperIcon"
-import { motion } from "framer-motion"
+import React, { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/atoms/Card";
+import { motion } from "framer-motion";
+import ApperIcon from "@/components/ApperIcon";
+import FormField from "@/components/molecules/FormField";
+import Input from "@/components/atoms/Input";
+import Textarea from "@/components/atoms/Textarea";
+import Select from "@/components/atoms/Select";
+import Button from "@/components/atoms/Button";
 
 const ContentGeneratorForm = ({ onGenerate, isGenerating }) => {
   const [formData, setFormData] = useState({
     industry: "",
     targetAudience: "",
     tone: "",
-    contentType: "",
+contentType: "",
     additionalNotes: ""
-  })
+  });
 
   const industries = [
     { value: "", label: "Select Industry" },
@@ -113,7 +113,7 @@ const handleSubmit = (e) => {
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
           <FormField label="Business Industry" required>
-            <Select
+<Select
               value={formData.industry}
               onChange={(e) => handleInputChange("industry", e.target.value)}
             >
@@ -125,7 +125,7 @@ const handleSubmit = (e) => {
             </Select>
           </FormField>
 
-          <FormField label="Target Audience" required>
+<FormField label="Target Audience" required>
             <Select
               value={formData.targetAudience}
               onChange={(e) => handleInputChange("targetAudience", e.target.value)}
