@@ -5,7 +5,7 @@ import ContentPreview from "@/components/molecules/ContentPreview";
 import StatsDisplay from "@/components/molecules/StatsDisplay";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
-import { AppIcon } from "@/components/ui/AppIcon";
+import ApperIcon from "@/components/ApperIcon";
 import { generateContent } from "@/services/api/contentService";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
@@ -158,12 +158,12 @@ const ContentGeneratorPage = () => {
               key={feature.title}
               whileHover={{ y: -5 }}
               transition={{ duration: 0.2 }}
-              className="text-center space-y-4"
 className="text-center space-y-4"
             >
               <div className="w-12 h-12 mx-auto rounded-xl bg-gradient-to-r from-primary-600/20 to-secondary-600/20 flex items-center justify-center border border-primary-500/20">
-                <AppIcon name={feature.icon} className="h-6 w-6 text-primary-400" />
+                <ApperIcon name={feature.icon} className="h-6 w-6 text-primary-400" />
               </div>
+              <h3 className="text-xl font-semibold text-white">
                 {feature.title}
               </h3>
               <p className="text-slate-400">
