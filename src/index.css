@@ -1,0 +1,129 @@
+@import 'react-toastify/dist/ReactToastify.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #0f0e17;
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: #0f0e17;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1b4b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #6366f1, #8b5cf6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #4f46e5, #7c3aed);
+}
+
+/* Toast customizations */
+.Toastify__toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.Toastify__toast {
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1e1b4b, #312e81);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: auto;
+  padding: 16px;
+}
+
+.Toastify__toast--success {
+  background: linear-gradient(135deg, #065f46, #047857);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.Toastify__toast--error {
+  background: linear-gradient(135deg, #7f1d1d, #991b1b);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.Toastify__progress-bar {
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+  height: 3px;
+}
+
+.Toastify__close-button {
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 0.8;
+}
+
+.Toastify__close-button:hover {
+  color: #ffffff;
+  opacity: 1;
+}
+
+/* Gradient text utility */
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .border-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2)) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+}
+
+/* Animation keyframes */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(90deg, #1e1b4b 0%, rgba(139, 92, 246, 0.1) 50%, #1e1b4b 100%);
+  background-size: 1000px 100%;
+}
