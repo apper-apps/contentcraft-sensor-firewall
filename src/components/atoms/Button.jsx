@@ -4,7 +4,7 @@ import { cn } from "@/utils/cn"
 const Button = forwardRef(({ className, variant = "default", size = "default", children, ...props }, ref) => {
   const variants = {
     default: "bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200",
-secondary: "bg-gray-200 hover:bg-gray-300 text-gray-800 border border-gray-300 hover:border-gray-400",
+secondary: "dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white light:bg-gray-200 light:hover:bg-gray-300 light:text-gray-800 border dark:border-gray-600 light:border-gray-300 dark:hover:border-gray-500 light:hover:border-gray-400",
     outline: "border border-gradient bg-transparent text-white hover:bg-gradient-to-r hover:from-primary-600/10 hover:to-secondary-600/10",
     ghost: "hover:bg-slate-800 text-white",
     gradient: "bg-gradient-to-r from-accent-600 to-secondary-600 hover:from-accent-700 hover:to-secondary-700 text-white shadow-lg hover:shadow-xl"

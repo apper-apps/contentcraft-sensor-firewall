@@ -28,7 +28,7 @@ const LogoutButton = () => {
 const Header = () => {
   return (
 <header
-    className="transition-colors duration-300 bg-gradient-to-r dark:from-slate-900/50 dark:to-slate-800/50 light:from-white/80 light:to-purple-50/80 backdrop-blur-sm border-b dark:border-slate-700/50 light:border-purple-200/50">
+className="transition-colors duration-300 bg-gradient-to-r dark:from-black/80 dark:to-gray-900/80 light:from-white/90 light:to-purple-50/90 backdrop-blur-sm border-b dark:border-gray-700/30 light:border-purple-200/50">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
             <motion.div
@@ -49,7 +49,7 @@ const Header = () => {
                     <ApperIcon name="Sparkles" className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                    <h1 className="text-xl font-display font-bold text-gradient">
+<h1 className="text-xl font-display font-bold dark:text-white light:text-gradient">
 ContentCraft AI
                     </h1>
                     <p className="text-xs dark:text-slate-400 light:text-purple-600">Smart Marketing Content Generator
@@ -71,12 +71,12 @@ ContentCraft AI
                         duration: 0.5,
                         delay: 0.1
                     }}>
-                    <div className="hidden sm:flex items-center gap-2 text-sm dark:text-slate-400 light:text-purple-600">
+<div className="hidden sm:flex items-center gap-2 text-sm dark:text-gray-200 light:text-purple-600">
                         <ApperIcon name="Zap" className="h-4 w-4 text-primary-400" />
                         AI Powered
                     </div>
-                    <div className="hidden sm:flex items-center gap-2 text-sm text-slate-400">
-                        <ApperIcon name="Clock" className="h-4 w-4 dark:text-secondary-400 light:text-purple-500" />
+<div className="hidden sm:flex items-center gap-2 text-sm dark:text-gray-200 light:text-purple-600">
+                        <ApperIcon name="Clock" className="h-4 w-4 dark:text-gray-300 light:text-purple-500" />
                         Instant Results
                     </div>
                 </motion.div>

@@ -101,7 +101,7 @@ const handleSubmit = (e) => {
   const isFormValid = formData.industry && formData.targetAudience && formData.tone && formData.contentType
 
   return (
-    <Card className="h-full">
+<Card className="h-full dark:bg-gradient-to-br dark:from-gray-900/50 dark:to-black/50 light:bg-gradient-to-br light:from-white light:to-purple-50/30">
       <CardHeader>
         <CardTitle className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-primary-600 to-secondary-600 flex items-center justify-center">
@@ -197,7 +197,7 @@ const handleSubmit = (e) => {
           </motion.div>
 
           {!isFormValid && (
-            <p className="text-sm text-slate-400 text-center">
+<p className="text-sm dark:text-gray-300 light:text-purple-600 text-center">
               Please fill in all required fields to generate content
             </p>
           )}

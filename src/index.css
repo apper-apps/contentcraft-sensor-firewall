@@ -17,13 +17,13 @@
 
 .dark {
   color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #0f0e17;
+  color: rgba(255, 255, 255, 0.95);
+  background-color: #000000;
 }
 
 .light {
   color-scheme: light;
-  color: rgba(30, 24, 62, 0.87);
+  color: rgba(17, 24, 39, 0.95);
   background-color: #ffffff;
 }
 
@@ -35,11 +35,13 @@ body {
 }
 
 .dark body {
-  background: #0f0e17;
+  background: #000000;
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .light body {
   background: #ffffff;
+  color: rgba(17, 24, 39, 0.95);
 }
 
 #root {
@@ -52,15 +54,15 @@ body {
 }
 
 .dark ::-webkit-scrollbar-track {
-  background: #1e1b4b;
+  background: #1a1a1a;
 }
 
 .light ::-webkit-scrollbar-track {
-  background: #f3f4f6;
+  background: #f8fafc;
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #6366f1, #8b5cf6);
+  background: linear-gradient(45deg, #374151, #6b7280);
   border-radius: 4px;
 }
 
@@ -70,7 +72,7 @@ body {
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #4f46e5, #7c3aed);
+  background: linear-gradient(45deg, #4b5563, #9ca3af);
 }
 
 .light ::-webkit-scrollbar-thumb:hover {
@@ -87,10 +89,10 @@ body {
 
 .Toastify__toast {
   border-radius: 12px;
-  background: linear-gradient(135deg, #1e1b4b, #312e81);
-  border: 1px solid rgba(139, 92, 246, 0.2);
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  border: 1px solid rgba(156, 163, 175, 0.3);
   color: #ffffff;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   font-family: Inter, sans-serif;
   font-size: 14px;
   line-height: 1.5;
@@ -99,13 +101,13 @@ body {
 }
 
 .Toastify__toast--success {
-  background: linear-gradient(135deg, #065f46, #047857);
-  border-color: rgba(16, 185, 129, 0.3);
+  background: linear-gradient(135deg, #065f46, #10b981);
+  border-color: rgba(16, 185, 129, 0.5);
 }
 
 .Toastify__toast--error {
-  background: linear-gradient(135deg, #7f1d1d, #991b1b);
-  border-color: rgba(239, 68, 68, 0.3);
+  background: linear-gradient(135deg, #7f1d1d, #dc2626);
+  border-color: rgba(239, 68, 68, 0.5);
 }
 
 .Toastify__progress-bar {

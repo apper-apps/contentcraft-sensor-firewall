@@ -22,7 +22,7 @@ const ContentPreview = ({ content, wordCount, charCount, onEdit }) => {
 
   if (!content) {
     return (
-      <Card className="h-full min-h-[400px] flex items-center justify-center">
+<Card className="h-full min-h-[400px] flex items-center justify-center dark:bg-gradient-to-br dark:from-gray-900/50 dark:to-black/50 light:bg-gradient-to-br light:from-white light:to-purple-50/30">
         <div className="text-center text-slate-400">
           <ApperIcon name="FileText" className="h-16 w-16 mx-auto mb-4 opacity-50" />
           <p className="text-lg">Your generated content will appear here</p>
@@ -41,9 +41,9 @@ const ContentPreview = ({ content, wordCount, charCount, onEdit }) => {
       <Card className="h-full">
         <CardHeader className="pb-4">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-gradient">Generated Content</CardTitle>
+<CardTitle className="dark:text-white light:text-gradient">Generated Content</CardTitle>
             <div className="flex items-center gap-2">
-              <span className="text-sm text-slate-400">
+              <span className="text-sm dark:text-gray-300 light:text-purple-600">
                 {wordCount} words • {charCount} characters
               </span>
               <Button
@@ -62,9 +62,9 @@ const ContentPreview = ({ content, wordCount, charCount, onEdit }) => {
           </div>
         </CardHeader>
         <CardContent className="space-y-4">
-<div className="bg-slate-800/90 rounded-lg p-4 border border-slate-600/30">
+<div className="dark:bg-gray-800/90 light:bg-purple-50/80 rounded-lg p-4 border dark:border-gray-600/30 light:border-purple-200/50">
             <div className="prose prose-invert max-w-none">
-              <div className="whitespace-pre-wrap text-white leading-relaxed">
+<div className="whitespace-pre-wrap dark:text-white light:text-gray-800 leading-relaxed">
                 {content}
               </div>
             </div>

@@ -6,7 +6,7 @@ const Card = forwardRef(({ className, ...props }, ref) => {
     <div
       ref={ref}
       className={cn(
-"rounded-xl bg-gradient-to-br from-gray-100/50 to-gray-200/50 border border-gray-300/50 backdrop-blur-sm shadow-2xl",
+"rounded-xl dark:bg-gradient-to-br dark:from-gray-800/30 dark:to-black/50 light:bg-gradient-to-br light:from-white light:to-gray-50/50 border dark:border-gray-700/30 light:border-gray-300/50 backdrop-blur-sm shadow-2xl",
         className
       )}
       {...props}
@@ -33,7 +33,7 @@ const CardTitle = forwardRef(({ className, ...props }, ref) => {
     <h3
       ref={ref}
 className={cn(
-        "text-2xl font-semibold leading-none tracking-tight text-slate-100",
+"text-2xl font-semibold leading-none tracking-tight dark:text-white light:text-gray-800",
         className
       )}
       {...props}

@@ -11,10 +11,10 @@ const Error = ({ message = "Something went wrong", onRetry, className }) => {
         </div>
         
         <div className="space-y-2">
-          <h3 className="text-lg font-semibold text-white">
+<h3 className="text-lg font-semibold dark:text-white light:text-red-700">
             Oops! Something went wrong
           </h3>
-          <p className="text-slate-400 max-w-md">
+<p className="dark:text-gray-200 light:text-red-600 max-w-md">
             {message}
           </p>
         </div>

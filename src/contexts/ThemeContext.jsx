@@ -16,10 +16,16 @@ export const ThemeProvider = ({ children }) => {
     return savedTheme || 'dark'
   })
 
-  useEffect(() => {
+useEffect(() => {
     localStorage.setItem('theme', theme)
     document.documentElement.classList.toggle('light', theme === 'light')
     document.documentElement.classList.toggle('dark', theme === 'dark')
+    // Update body background for true black dark mode
+    if (theme === 'dark') {
+      document.body.style.backgroundColor = '#000000'
+    } else {
+      document.body.style.backgroundColor = '#ffffff'
+    }
   }, [theme])
 
   const toggleTheme = () => {

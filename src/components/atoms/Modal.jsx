@@ -58,8 +58,8 @@ const Modal = ({
           {/* Modal Content */}
           <motion.div
             className={cn(
-              "relative bg-gradient-to-br dark:from-slate-900 dark:to-slate-800 light:from-white light:to-purple-50",
-              "border dark:border-slate-700/50 light:border-purple-200/50",
+"relative bg-gradient-to-br dark:from-gray-900 dark:to-black light:from-white light:to-purple-50",
+              "border dark:border-gray-700/50 light:border-purple-200/50",
               "rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-auto",
               className
             )}

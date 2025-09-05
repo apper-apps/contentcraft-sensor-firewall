@@ -116,7 +116,7 @@ function App() {
   
   return (
     <AuthContext.Provider value={authMethods}>
-<div className="min-h-screen transition-colors duration-300 bg-gradient-to-br dark:from-[#0f0e17] dark:via-[#1a1625] dark:to-[#0f0e17] light:from-gray-50 light:via-gray-100 light:to-gray-50">
+<div className="min-h-screen transition-colors duration-300 bg-gradient-to-br dark:from-black dark:via-black dark:to-black light:from-white light:via-gray-50 light:to-white">
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
