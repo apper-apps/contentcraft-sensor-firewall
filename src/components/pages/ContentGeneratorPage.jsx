@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import SignupModal from "@/components/molecules/SignupModal";
 import { motion } from "framer-motion";
-import { getContentTemplate } from "@/services/api/contentService";
+import { generateContent } from "@/services/api/contentService";
 import ApperIcon from "@/components/ApperIcon";
 import Header from "@/components/organisms/Header";
 import ContentGeneratorForm from "@/components/organisms/ContentGeneratorForm";
 import StatsDisplay from "@/components/molecules/StatsDisplay";
 import ContentPreview from "@/components/molecules/ContentPreview";
+import SignupModal from "@/components/molecules/SignupModal";
 import Error from "@/components/ui/Error";
 import Loading from "@/components/ui/Loading";
+
 const ContentGeneratorPage = () => {
   const [content, setContent] = useState("")
+  const [generatedContent, setGeneratedContent] = useState("")
+  const [wordCount, setWordCount] = useState(0)
   const [isGenerating, setIsGenerating] = useState(false)
   const [error, setError] = useState(null)
   const [showSignupModal, setShowSignupModal] = useState(false)
@@ -19,10 +22,9 @@ const ContentGeneratorPage = () => {
   const [stats, setStats] = useState({
     totalGenerated: 156,
     todayGenerated: 23,
-avgResponseTime: "2.4s"
+    avgResponseTime: "2.4s"
   })
-
-  const handleGenerate = async (formData) => {
+const handleGenerate = async (formData) => {
     setIsGenerating(true)
     setError(null)
     
@@ -34,22 +36,11 @@ avgResponseTime: "2.4s"
         return
       }
       
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
-      const template = getContentTemplate(formData.contentType, formData.industry)
-      
-      if (!template) {
-        throw new Error("Content template not found")
-      }
-      
-      // Generate personalized content based on form data
-      const generatedContent = template.content
-        .replace(/\{industry\}/g, formData.industry)
-        .replace(/\{audience\}/g, formData.targetAudience)
-        .replace(/\{tone\}/g, formData.tone)
+      const generatedContent = await generateContent(formData)
       
       setContent(generatedContent)
+      setGeneratedContent(generatedContent)
+      setWordCount(generatedContent.split(' ').length)
       setUsageCount(prev => prev + 1)
       setStats(prev => ({
         ...prev,
