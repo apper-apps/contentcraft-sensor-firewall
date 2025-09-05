@@ -23,7 +23,7 @@
 
 .light {
   color-scheme: light;
-  color: rgba(17, 24, 39, 0.95);
+  color: rgba(107, 33, 168, 0.95);
   background-color: #ffffff;
 }
 
@@ -41,7 +41,7 @@ body {
 
 .light body {
   background: #ffffff;
-  color: rgba(17, 24, 39, 0.95);
+  color: rgba(107, 33, 168, 0.95);
 }
 
 #root {

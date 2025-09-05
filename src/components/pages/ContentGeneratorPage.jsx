@@ -90,7 +90,7 @@ const handleRetry = () => {
 <h1 className="text-2xl sm:text-3xl font-display font-bold dark:text-white light:text-purple-900">
               Create Engaging Content in Seconds
             </h1>
-<p className="text-xl dark:text-gray-200 light:text-black max-w-3xl mx-auto">
+<p className="text-xl dark:text-gray-200 light:text-purple-800 max-w-3xl mx-auto">
               Generate personalized marketing content for your business with AI.
               From blog posts to social media, create professional content that converts.
             </p>
@@ -162,7 +162,7 @@ const handleRetry = () => {
 <h2 className="text-3xl font-display font-bold dark:text-white light:text-purple-900">
               Why Businesses Choose ContentCraft AI
             </h2>
-<p className="text-xl dark:text-slate-400 light:text-black max-w-4xl mx-auto">
+<p className="text-xl dark:text-slate-400 light:text-purple-800 max-w-4xl mx-auto">
               Join successful businesses who have transformed their content strategy and saved countless hours while achieving better results
             </p>
           </div>
@@ -204,7 +204,7 @@ const handleRetry = () => {
 <h3 className="text-xl font-semibold dark:text-white light:text-purple-900">
                 {feature.title}
               </h3>
-<p className="dark:text-gray-200 light:text-black">
+<p className="dark:text-gray-200 light:text-purple-800">
                 {feature.description}
               </p>
             </motion.div>
@@ -222,7 +222,7 @@ const handleRetry = () => {
 <h2 className="text-3xl font-display font-bold dark:text-white light:text-purple-900 mb-4">
               The Smart Choice for Your Business
             </h2>
-<p className="text-xl dark:text-gray-200 light:text-black max-w-3xl mx-auto">
+<p className="text-xl dark:text-gray-200 light:text-purple-800 max-w-3xl mx-auto">
               Discover why our AI-powered content generator is the preferred solution for businesses serious about growth
             </p>
           </div>
@@ -270,7 +270,7 @@ const handleRetry = () => {
                 key={benefit.title}
                 whileHover={{ y: -8, scale: 1.02 }}
 transition={{ duration: 0.3 }}
-                className="dark:bg-gradient-to-br dark:from-gray-800/50 dark:to-black/50 light:bg-gradient-to-br light:from-white light:to-purple-50/50 rounded-xl p-6 border dark:border-gray-700/30 light:border-purple-200/50 hover:border-primary-500/30 transition-colors duration-300"
+                className="dark:bg-gradient-to-br dark:from-gray-800/50 dark:to-black/50 light:bg-gradient-to-br light:from-purple-50 light:to-purple-100/50 rounded-xl p-6 border dark:border-gray-700/30 light:border-purple-200/50 hover:border-primary-500/30 transition-colors duration-300"
               >
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
@@ -282,7 +282,7 @@ transition={{ duration: 0.3 }}
 <h3 className="text-lg font-semibold dark:text-white light:text-purple-900 mb-2">
                       {benefit.title}
                     </h3>
-<p className="dark:text-gray-200 light:text-black text-sm leading-relaxed mb-3">
+<p className="dark:text-gray-200 light:text-purple-800 text-sm leading-relaxed mb-3">
                       {benefit.description}
                     </p>
                     <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary-500/10 border border-primary-500/20">
@@ -305,11 +305,11 @@ transition={{ duration: 0.3 }}
 <h3 className="text-2xl font-bold dark:text-white light:text-purple-900 mb-4">
               Ready to Transform Your Content Strategy?
             </h3>
-<p className="dark:text-gray-200 light:text-black text-lg mb-6 max-w-2xl mx-auto">
+<p className="dark:text-gray-200 light:text-purple-800 text-lg mb-6 max-w-2xl mx-auto">
 Join successful businesses who have discovered the power of AI-generated content.
               Start creating professional marketing materials that convert in seconds, not hours.
             </p>
-<div className="flex flex-wrap justify-center gap-6 text-sm dark:text-gray-300 light:text-black">
+<div className="flex flex-wrap justify-center gap-6 text-sm dark:text-gray-300 light:text-purple-800">
               <div className="flex items-center gap-2">
                 <ApperIcon name="Check" className="h-4 w-4 text-green-400" />
                 <span>No contracts or commitments</span>
