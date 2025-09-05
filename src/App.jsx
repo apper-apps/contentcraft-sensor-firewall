@@ -5,7 +5,7 @@ import ContentGeneratorPage from "@/components/pages/ContentGeneratorPage"
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-gradient-to-br from-[#0f0e17] via-[#1a1625] to-[#0f0e17]">
+<div className="min-h-screen transition-colors duration-300 bg-gradient-to-br dark:from-[#0f0e17] dark:via-[#1a1625] dark:to-[#0f0e17] light:from-white light:via-purple-50 light:to-purple-100">
         <Routes>
           <Route path="/" element={<ContentGeneratorPage />} />
         </Routes>

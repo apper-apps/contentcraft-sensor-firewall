@@ -55,7 +55,7 @@ const ContentGeneratorPage = () => {
   }
 
   return (
-    <div className="min-h-screen">
+<div className="min-h-screen transition-colors duration-300">
       <Header />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -66,10 +66,10 @@ const ContentGeneratorPage = () => {
           className="mb-8"
         >
           <div className="text-center space-y-4">
-            <h1 className="text-4xl sm:text-5xl font-display font-bold text-gradient">
+<h1 className="text-4xl sm:text-5xl font-display font-bold text-gradient dark:text-gradient light:bg-gradient-to-r light:from-purple-600 light:to-purple-800 light:bg-clip-text light:text-transparent">
               Create Engaging Content in Seconds
             </h1>
-            <p className="text-xl text-slate-400 max-w-3xl mx-auto">
+<p className="text-xl dark:text-slate-400 light:text-purple-700 max-w-3xl mx-auto">
               Generate personalized marketing content for your business with AI. 
               From blog posts to social media, create professional content that converts.
             </p>
@@ -163,10 +163,10 @@ className="text-center space-y-4"
               <div className="w-12 h-12 mx-auto rounded-xl bg-gradient-to-r from-primary-600/20 to-secondary-600/20 flex items-center justify-center border border-primary-500/20">
                 <ApperIcon name={feature.icon} className="h-6 w-6 text-primary-400" />
               </div>
-              <h3 className="text-xl font-semibold text-white">
+<h3 className="text-xl font-semibold dark:text-white light:text-purple-900">
                 {feature.title}
               </h3>
-              <p className="text-slate-400">
+<p className="dark:text-slate-400 light:text-purple-600">
                 {feature.description}
               </p>
             </motion.div>
