@@ -43,7 +43,7 @@ const ContentPreview = ({ content, wordCount, charCount, onEdit }) => {
           <div className="flex items-center justify-between">
 <CardTitle className="dark:text-white light:text-purple-900">Generated Content</CardTitle>
             <div className="flex items-center gap-2">
-<span className="text-sm dark:text-gray-300 light:text-purple-800">
+<span className="text-sm text-gray-600 dark:text-gray-300">
                 {wordCount} words • {charCount} characters
               </span>
               <Button
