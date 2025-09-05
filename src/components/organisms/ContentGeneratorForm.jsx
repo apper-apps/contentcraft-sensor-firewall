@@ -197,7 +197,7 @@ const handleSubmit = (e) => {
           </motion.div>
 
           {!isFormValid && (
-<p className="text-sm dark:text-gray-300 light:text-purple-600 text-center">
+<p className="text-sm dark:text-gray-300 light:text-black text-center">
               Please fill in all required fields to generate content
             </p>
           )}

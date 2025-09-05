@@ -41,9 +41,9 @@ const ContentPreview = ({ content, wordCount, charCount, onEdit }) => {
       <Card className="h-full">
         <CardHeader className="pb-4">
           <div className="flex items-center justify-between">
-<CardTitle className="dark:text-white light:text-gradient">Generated Content</CardTitle>
+<CardTitle className="dark:text-white light:text-purple-900">Generated Content</CardTitle>
             <div className="flex items-center gap-2">
-              <span className="text-sm dark:text-gray-300 light:text-purple-600">
+<span className="text-sm dark:text-gray-300 light:text-black">
                 {wordCount} words • {charCount} characters
               </span>
               <Button
@@ -64,7 +64,7 @@ const ContentPreview = ({ content, wordCount, charCount, onEdit }) => {
         <CardContent className="space-y-4">
 <div className="dark:bg-gray-800/90 light:bg-purple-50/80 rounded-lg p-4 border dark:border-gray-600/30 light:border-purple-200/50">
             <div className="prose prose-invert max-w-none">
-<div className="whitespace-pre-wrap dark:text-white light:text-gray-800 leading-relaxed">
+<div className="whitespace-pre-wrap dark:text-white light:text-black leading-relaxed">
                 {content}
               </div>
             </div>

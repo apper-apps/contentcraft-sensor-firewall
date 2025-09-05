@@ -87,10 +87,10 @@ const handleRetry = () => {
           className="mb-8"
         >
           <div className="text-center space-y-4">
-<h1 className="text-2xl sm:text-3xl font-display font-bold dark:text-white light:bg-gradient-to-r light:from-purple-600 light:to-purple-800 light:bg-clip-text light:text-transparent">
+<h1 className="text-2xl sm:text-3xl font-display font-bold dark:text-white light:text-purple-900">
               Create Engaging Content in Seconds
             </h1>
-<p className="text-xl dark:text-gray-200 light:text-purple-700 max-w-3xl mx-auto">
+<p className="text-xl dark:text-gray-200 light:text-black max-w-3xl mx-auto">
               Generate personalized marketing content for your business with AI.
               From blog posts to social media, create professional content that converts.
             </p>
@@ -159,10 +159,10 @@ const handleRetry = () => {
           className="mt-12 mb-8"
         >
           <div className="text-center space-y-4">
-<h2 className="text-3xl font-display font-bold dark:text-white light:text-gradient">
+<h2 className="text-3xl font-display font-bold dark:text-white light:text-purple-900">
               Why Thousands of Businesses Choose ContentCraft AI
             </h2>
-            <p className="text-xl dark:text-slate-400 light:text-purple-600 max-w-4xl mx-auto">
+<p className="text-xl dark:text-slate-400 light:text-black max-w-4xl mx-auto">
               Join successful businesses who have transformed their content strategy and saved countless hours while achieving better results
             </p>
           </div>
@@ -204,7 +204,7 @@ const handleRetry = () => {
 <h3 className="text-xl font-semibold dark:text-white light:text-purple-900">
                 {feature.title}
               </h3>
-              <p className="dark:text-gray-200 light:text-purple-600">
+<p className="dark:text-gray-200 light:text-black">
                 {feature.description}
               </p>
             </motion.div>
@@ -219,10 +219,10 @@ const handleRetry = () => {
           className="mt-20"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-display font-bold text-gradient mb-4">
+<h2 className="text-3xl font-display font-bold dark:text-white light:text-purple-900 mb-4">
               The Smart Choice for Your Business
-</h2>
-            <p className="text-xl dark:text-gray-200 light:text-purple-600 max-w-3xl mx-auto">
+            </h2>
+<p className="text-xl dark:text-gray-200 light:text-black max-w-3xl mx-auto">
               Discover why our AI-powered content generator is the preferred solution for businesses serious about growth
             </p>
           </div>
@@ -279,10 +279,10 @@ transition={{ duration: 0.3 }}
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold dark:text-white light:text-purple-900 mb-2">
+<h3 className="text-lg font-semibold dark:text-white light:text-purple-900 mb-2">
                       {benefit.title}
                     </h3>
-                    <p className="dark:text-gray-200 light:text-purple-600 text-sm leading-relaxed mb-3">
+<p className="dark:text-gray-200 light:text-black text-sm leading-relaxed mb-3">
                       {benefit.description}
                     </p>
                     <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary-500/10 border border-primary-500/20">
@@ -302,14 +302,14 @@ transition={{ duration: 0.3 }}
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-center mt-12 p-8 bg-gradient-to-r from-primary-600/10 to-secondary-600/10 rounded-2xl border border-primary-500/20"
           >
-            <h3 className="text-2xl font-bold text-gradient mb-4">
+<h3 className="text-2xl font-bold dark:text-white light:text-purple-900 mb-4">
               Ready to Transform Your Content Strategy?
             </h3>
-<p className="dark:text-gray-200 light:text-purple-700 text-lg mb-6 max-w-2xl mx-auto">
+<p className="dark:text-gray-200 light:text-black text-lg mb-6 max-w-2xl mx-auto">
               Join thousands of businesses who've already discovered the power of AI-generated content.
               Start creating professional marketing materials that convert in seconds, not hours.
             </p>
-<div className="flex flex-wrap justify-center gap-6 text-sm dark:text-gray-300 light:text-purple-600">
+<div className="flex flex-wrap justify-center gap-6 text-sm dark:text-gray-300 light:text-black">
               <div className="flex items-center gap-2">
                 <ApperIcon name="Check" className="h-4 w-4 text-green-400" />
                 <span>No contracts or commitments</span>
