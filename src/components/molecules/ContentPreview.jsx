@@ -81,12 +81,15 @@ const ContentPreview = ({ content, wordCount, charCount, onEdit }) => {
             </Button>
             <Button
               variant="ghost"
-              size="sm"
+size="sm"
               onClick={handleCopy}
               className="gap-2"
             >
-              <ApperIcon name="Share" className="h-4 w-4" />
-              Share
+              <ApperIcon 
+                name={copied ? "Check" : "Copy"} 
+                className={cn("h-4 w-4", copied && "text-green-400")} 
+              />
+              {copied ? "Copied!" : "Copy"}
             </Button>
           </div>
         </CardContent>

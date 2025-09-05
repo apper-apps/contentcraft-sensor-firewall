@@ -8,19 +8,19 @@ const StatsDisplay = ({ wordCount = 0, charCount = 0, estimatedReadTime = 0 }) =
       label: "Words",
       value: wordCount,
       icon: "Type",
-      color: "text-primary-400"
+      color: "text-blue-400 dark:text-blue-400 light:text-blue-600"
     },
     {
       label: "Characters",
       value: charCount,
       icon: "Hash",
-      color: "text-secondary-400"
+      color: "text-purple-400 dark:text-purple-400 light:text-purple-600"
     },
     {
       label: "Read Time",
       value: `${estimatedReadTime}min`,
       icon: "Clock",
-      color: "text-accent-400"
+      color: "text-pink-400 dark:text-pink-400 light:text-pink-600"
     }
   ]
 
@@ -40,10 +40,10 @@ const StatsDisplay = ({ wordCount = 0, charCount = 0, estimatedReadTime = 0 }) =
                   name={stat.icon} 
                   className={`h-5 w-5 ${stat.color}`} 
                 />
-                <div className="text-2xl font-bold text-white">
+<div className="text-2xl font-bold dark:text-white light:text-gray-900">
                   {stat.value}
                 </div>
-                <div className="text-sm text-slate-400">
+                <div className="text-sm dark:text-slate-400 light:text-gray-600">
                   {stat.label}
                 </div>
               </div>
