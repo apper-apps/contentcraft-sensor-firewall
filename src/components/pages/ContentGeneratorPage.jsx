@@ -160,7 +160,7 @@ const handleRetry = () => {
         >
           <div className="text-center space-y-4">
 <h2 className="text-3xl font-display font-bold dark:text-white light:text-purple-900">
-              Why Thousands of Businesses Choose ContentCraft AI
+              Why Businesses Choose ContentCraft AI
             </h2>
 <p className="text-xl dark:text-slate-400 light:text-black max-w-4xl mx-auto">
               Join successful businesses who have transformed their content strategy and saved countless hours while achieving better results
@@ -306,7 +306,7 @@ transition={{ duration: 0.3 }}
               Ready to Transform Your Content Strategy?
             </h3>
 <p className="dark:text-gray-200 light:text-black text-lg mb-6 max-w-2xl mx-auto">
-              Join thousands of businesses who've already discovered the power of AI-generated content.
+Join successful businesses who have discovered the power of AI-generated content.
               Start creating professional marketing materials that convert in seconds, not hours.
             </p>
 <div className="flex flex-wrap justify-center gap-6 text-sm dark:text-gray-300 light:text-black">
