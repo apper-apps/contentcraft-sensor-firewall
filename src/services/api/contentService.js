@@ -273,12 +273,18 @@ export const getGeneratedContent = async () => {
 export const generateContent = async (formData) => {
   try {
     // Generate the content using templates
-const content = generateContentByType(
-      formData.contentType,
-      formData.industry,
-      formData.targetAudience,
-      formData.tone,
-      formData.additionalNotes
+// Load templates and generate content
+    const templates = await import('@/services/mockData/contentTemplates.json');
+    const contentTemplates = templates.default;
+    
+    // Generate content using templates
+    const content = generateContentByType(
+      formData.contentType || formData.content_type_c,
+      formData.industry || formData.industry_c,
+      formData.targetAudience || formData.target_audience_c,
+      formData.tone || formData.tone_c,
+      formData.additionalNotes || formData.additional_notes_c,
+      contentTemplates
     );
     
     // Type-safe content validation to prevent trim() errors on non-strings
@@ -286,8 +292,9 @@ const content = generateContentByType(
       throw new Error('Failed to generate valid content. Please try again with different parameters.');
     }
     
+// Validate generated content
     if (!content || content.trim().length === 0) {
-      throw new Error("Failed to generate content");
+      throw new Error("Failed to generate valid content. Please try again with different parameters.");
     }
     
     // Calculate word count
