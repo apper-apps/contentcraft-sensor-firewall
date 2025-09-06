@@ -44,29 +44,29 @@ const getDefaultPricingPackages = () => {
     {
       Id: 1,
       Name: "Starter Package",
-      quantity_c: 100,
-      price_c: 9.99,
+      quantity_c: 200,
+      price_c: 10.00,
       popular: false
     },
     {
       Id: 2,
       Name: "Popular Package", 
-      quantity_c: 250,
-      price_c: 19.99,
+      quantity_c: 500,
+      price_c: 25.00,
       popular: true
     },
     {
       Id: 3,
       Name: "Professional Package",
-      quantity_c: 500,
-      price_c: 34.99,
+      quantity_c: 1000,
+      price_c: 45.00,
       popular: false
     },
     {
       Id: 4,
       Name: "Enterprise Package",
-      quantity_c: 1000,
-      price_c: 49.99,
+      quantity_c: 2000,
+      price_c: 80.00,
       popular: false
     }
   ];
