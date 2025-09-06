@@ -1,11 +1,10 @@
 import { motion } from "framer-motion";
-import { useContext } from "react";
+import React, { useContext, useState } from "react";
+import PricingModal from "@/components/molecules/PricingModal";
+import { AuthContext } from "@/App";
+import ApperIcon from "@/components/ApperIcon";
 import ThemeToggle from "@/components/atoms/ThemeToggle";
 import Button from "@/components/atoms/Button";
-import React from "react";
-import ApperIcon from "@/components/ApperIcon";
-import { AuthContext } from "@/App";
-
 const LogoutButton = () => {
   const { logout } = useContext(AuthContext);
 
@@ -26,66 +25,80 @@ const LogoutButton = () => {
   );
 };
 const Header = () => {
+  const [showPricingModal, setShowPricingModal] = useState(false);
+
   return (
-<header
-className="transition-colors duration-300 bg-gradient-to-r dark:from-black/80 dark:to-gray-900/80 light:from-white/90 light:to-purple-50/90 backdrop-blur-sm border-b dark:border-gray-700/30 light:border-purple-200/50">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <>
+      <header className="relative py-4 sm:py-6 border-b dark:border-gray-800 light:border-purple-200/50 z-40">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
             <motion.div
-                className="flex items-center gap-3"
-                initial={{
-                    opacity: 0,
-                    x: -20
-                }}
-                animate={{
-                    opacity: 1,
-                    x: 0
-                }}
-                transition={{
-                    duration: 0.5
-                }}>
-                <div
-                    className="w-10 h-10 rounded-xl bg-gradient-to-r from-primary-600 to-secondary-600 flex items-center justify-center shadow-lg">
-                    <ApperIcon name="Sparkles" className="h-6 w-6 text-white" />
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex items-center space-x-4"
+            >
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-primary-600 to-secondary-600 flex items-center justify-center">
+                  <ApperIcon name="Sparkles" className="h-5 w-5 text-white" />
                 </div>
                 <div>
-<h1 className="text-xl font-display font-bold dark:text-white light:text-gradient">
-ContentCraft AI
-                    </h1>
-                    <p className="text-xs dark:text-slate-400 light:text-purple-600">Smart Marketing Content Generator
-                                      </p>
+                  <h1 className="text-xl font-bold dark:text-white light:text-purple-900">
+                    ContentCraft AI
+                  </h1>
+                  <p className="text-xs dark:text-gray-400 light:text-purple-600">
+                    AI-Powered Content Generation
+                  </p>
                 </div>
+              </div>
             </motion.div>
-<motion.div className="flex items-center gap-4">
-                <ThemeToggle />
-                <motion.div
-                    initial={{
-                        opacity: 0,
-                        x: 20
-                    }}
-                    animate={{
-                        opacity: 1,
-                        x: 0
-                    }}
-                    transition={{
-                        duration: 0.5,
-                        delay: 0.1
-                    }}>
-<div className="hidden sm:flex items-center gap-2 text-sm dark:text-gray-200 light:text-purple-600">
-                        <ApperIcon name="Zap" className="h-4 w-4 text-primary-400" />
-                        AI Powered
-                    </div>
-<div className="hidden sm:flex items-center gap-2 text-sm dark:text-gray-200 light:text-purple-600">
-                        <ApperIcon name="Clock" className="h-4 w-4 dark:text-gray-300 light:text-purple-500" />
-                        Instant Results
-                    </div>
-                </motion.div>
-                <LogoutButton />
-            </motion.div>
-        </div>
-    </div>
-</header>
-  )
-}
 
-export default Header
+            <motion.div className="flex items-center gap-4">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowPricingModal(true)}
+                className="hidden sm:flex"
+              >
+                <ApperIcon name="CreditCard" className="h-4 w-4 mr-2" />
+                Pricing
+              </Button>
+              <ThemeToggle />
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  x: 20
+                }}
+                animate={{
+                  opacity: 1,
+                  x: 0
+                }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.1
+                }}>
+                <div className="hidden sm:flex items-center gap-2 text-sm dark:text-gray-200 light:text-purple-600">
+                  <ApperIcon name="Zap" className="h-4 w-4 text-primary-400" />
+                  AI Powered
+                </div>
+                <div className="hidden sm:flex items-center gap-2 text-sm dark:text-gray-200 light:text-purple-600">
+                  <ApperIcon name="Clock" className="h-4 w-4 dark:text-gray-300 light:text-purple-500" />
+                  Instant Results
+                </div>
+              </motion.div>
+              <LogoutButton />
+            </motion.div>
+          </div>
+        </div>
+      </header>
+      
+      {/* Pricing Modal */}
+      <PricingModal 
+        isOpen={showPricingModal} 
+        onClose={() => setShowPricingModal(false)} 
+      />
+    </>
+  );
+};
+
+export default Header;
